@@ -15,7 +15,7 @@ def create_app(test_config=None):
 
 
 
-    UPLOAD_FOLDER = 'stati/imgc'
+    UPLOAD_FOLDER = 'ingredients-label/static/img'
     app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 
