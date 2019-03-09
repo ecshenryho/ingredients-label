@@ -72,6 +72,6 @@ def upload_file():
 
                 for word in words:
                     print word
-            
+
             return text
     return "no file"
