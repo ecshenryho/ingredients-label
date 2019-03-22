@@ -37,8 +37,8 @@ def upload_file():
             img = img.convert('L')
 
             text = image_to_string(img)
-            print "before if"
-            print text
+
+            #print text
             #if found these ingredients words
             if((text.find("INGREDIENTS:")!=-1) or (text.find("ingredients:")!=-1) or (text.find("Ingredients:")!=-1)):
                 print "Found it"
@@ -55,7 +55,7 @@ def upload_file():
 
                 index = indexOfIn + 12
                 startIndex = index
-
+                #iterate until we get the period if not stop if index exceed the string length
                 while(text[index]!="."):
                     index = index +1
                     if(index < len(text)):
@@ -63,10 +63,11 @@ def upload_file():
                             break
                     else:
                         break
-
+                #get the string into the list
                 dictlist = text[startIndex: index]
                 dictlist = dictlist.strip()
-                words = dictlist.split(",")
+                words = dictlist.split(",") #list of words
+                #try to print out on terminal to check
                 print "print list: "
                 for word in words:
                     print (word)
@@ -74,20 +75,16 @@ def upload_file():
             else:
 
                 countRotate = 0
-
+                #rotat until we can find it, if roate in more than 3 times =  not found
                 while (text.find("INGREDIENTS:") == -1 or text == "" or (text.find("Ingredients:")==-1) or (text.find("ingredients:")==-1)):
-                    #print("inside while loop")
-
-                    # convert to grayspace
-                    #img = img.convert('L')
 
                     # rotate it and check if we can find it
                     img = img.rotate(90)
                     text = image_to_string(img)
                     countRotate = countRotate + 1
-                    print "inside while loop roate lan: "
-                    print countRotate
-                    print text
+
+                    #print countRotate
+                    #print text
 
                     # if we find it put them in to the list to use for database.
                     if((text.find("INGREDIENTS:")!=-1) or (text.find("ingredients:")!=-1) or (text.find("Ingredients:")!=-1)):
@@ -102,9 +99,10 @@ def upload_file():
                         else:
                             print "Not found"
 
+                        #set the start index for the string
                         index = indexOfIn + 12
                         startIndex = index
-
+                        #iterate it until find a period or when index exceed the string length we stop
                         while(text[index]!="."):
                             index = index +1
                             if(index < len(text)):
@@ -112,10 +110,11 @@ def upload_file():
                                     break
                             else:
                                 break
-
+                        #get the list of words for using on database
                         dictlist = text[startIndex: index]
                         dictlist = dictlist.strip()
                         words = dictlist.split(",")
+                        #print on terminal for testing purpose
                         print "print list: "
                         for word in words:
                             print (word)
@@ -125,24 +124,5 @@ def upload_file():
                     if(countRotate >3):
                         text ="Not Found."
                         break
-
-            # # getting text into a list of words
-            # if((text.find("INGREDIENTS:")!=-1) or (text.find("ingredients:")!=-1) or (text.find("Ingredients:")!=-1)):
-            #     indexOfIn = text.find("INGREDIENTS:")
-            #     index = indexOfIn + 12
-            #     startIndex = index
-            #     while(text[index]!="."):
-            #         index = index +1
-            #         if(text[index] == "."):
-            #             break
-            #
-            #     dictlist = text[startIndex: index]
-            #     dictlist = dictlist.strip()
-            #     words = dictlist.split(",")
-            #
-            #
-            #     for word in words:
-            #         print (word)
-
             return text
     return "no file"
