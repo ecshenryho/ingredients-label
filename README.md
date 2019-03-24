@@ -15,7 +15,7 @@ To install:
 4. Run the application with these commands in the parent folder of ingredients-label folder:
     ```
     export FLASK_APP=ingredients-label
-    python -m flask run
+    flask run
     ```
 5. Open a web browser and navigate to the ip address displayed in the terminal with the /label/ suffix e.g:
    ```
